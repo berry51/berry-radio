@@ -1,7 +1,7 @@
 {
   "name": "berry-radio",
-  "version": "0.9.0",
-  "description": "Play live radio inside Obsidian: a player in your notes, a panel in the sidebar, and a mini player in the status bar.",
+  "version": "0.9.1",
+  "description": "在 Obsidian 里听电台：笔记内嵌播放器、侧栏电台面板、状态栏迷你播放器。",
   "author": "berry51",
   "main": "main.js",
   "type": "module",
