@@ -1,0 +1,34 @@
+/** 测试用的最小 obsidian 运行时替身，只覆盖本插件实际用到的 API。 */
+export class MarkdownRenderChild {
+	containerEl: HTMLElement;
+
+	constructor(containerEl: HTMLElement) {
+		this.containerEl = containerEl;
+	}
+}
+
+export function setIcon(el: HTMLElement, iconId: string): void {
+	el.textContent = iconId;
+}
+
+export class Notice {
+	constructor(public readonly message: string) {}
+}
+
+export class TFile {
+	path = "";
+}
+
+export class Plugin {}
+
+export class PluginSettingTab {}
+
+export class Setting {}
+
+export class SuggestModal {}
+
+export class ItemView {}
+
+export async function requestUrl(): Promise<{ json: unknown }> {
+	return { json: [] };
+}

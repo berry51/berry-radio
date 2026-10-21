@@ -1,0 +1,6 @@
+node_modules/
+*.log
+.DS_Store
+
+# 设计过程的一次性预览稿，不进仓库
+design-previews/

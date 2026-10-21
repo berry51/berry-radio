@@ -1,0 +1,43 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check
+        run: npm run typecheck
+
+      - name: Unit and DOM tests
+        run: npm test
+
+      - name: Build production bundle
+        run: npm run build
+
+      # 官方目录会从源码重新构建并与 Release 资产逐字节比对，
+      # 这里先自己保证：仓库里的 main.js 必须等于当前源码构建结果。
+      - name: Verify the committed bundle matches the build
+        run: git diff --exit-code -- main.js
+
+      - name: Upload the built bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: berry-radio-bundle
+          path: |
+            main.js
+            manifest.json
+            styles.css

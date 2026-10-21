@@ -1,0 +1,10 @@
+{
+  "id": "berry-radio",
+  "name": "Berry Radio",
+  "version": "0.9.0",
+  "minAppVersion": "1.5.7",
+  "description": "Play live radio inside Obsidian: a player in your notes, a panel in the sidebar, and a mini player in the status bar.",
+  "author": "berry51",
+  "authorUrl": "https://github.com/berry51",
+  "isDesktopOnly": false
+}
