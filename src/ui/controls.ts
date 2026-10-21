@@ -17,7 +17,7 @@ function button(cls: string, iconId: string, label: string, onClick: () => void)
 	icon: HTMLElement;
 	label: HTMLElement;
 } {
-	const element = document.createElement("button");
+	const element = createEl("button");
 	element.type = "button";
 	element.className = cls;
 	const icon = element.createSpan({ cls: "br-icon" });
@@ -41,7 +41,7 @@ export function renderControls(
 	options: { size?: ControlSize; showVolume?: boolean } = {},
 ): PlayerControls {
 	const size = options.size ?? "md";
-	const root = document.createElement("div");
+	const root = createDiv();
 	root.className = `br-controls br-controls--${size}`;
 
 	const play = button("br-controls__btn br-controls__btn--play", "play", "播放", () =>

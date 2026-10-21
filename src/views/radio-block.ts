@@ -66,8 +66,7 @@ export class RadioBlock extends MarkdownRenderChild {
 		renderArtwork(this.artEl, null, "lg");
 
 		const info = head.createDiv({ cls: "berry-radio__info" });
-		this.categoryEl = info.createSpan({ cls: "berry-radio__cat" });
-		this.categoryEl.style.display = "none";
+		this.categoryEl = info.createSpan({ cls: "berry-radio__cat br-is-hidden" });
 		this.nameEl = info.createDiv({ cls: "berry-radio__name", text: this.query || "未指定电台" });
 
 		this.metaEl = info.createDiv({ cls: "berry-radio__meta" });
@@ -155,9 +154,9 @@ export class RadioBlock extends MarkdownRenderChild {
 		const category = primaryCategory(station.tags);
 		if (category) {
 			this.categoryEl.setText(category);
-			this.categoryEl.style.display = "";
+			this.categoryEl.removeClass("br-is-hidden");
 		} else {
-			this.categoryEl.style.display = "none";
+			this.categoryEl.addClass("br-is-hidden");
 		}
 		this.metaTextEl.setText(describeStation(station));
 		this.paintFavorite(station);
@@ -257,7 +256,7 @@ export class RadioBlock extends MarkdownRenderChild {
 		setIcon(this.playIcon, "play");
 		this.playLabel.setText("播放");
 		this.nameEl.setText(this.query || "未指定电台");
-		this.categoryEl.style.display = "none";
+		this.categoryEl.addClass("br-is-hidden");
 		this.metaTextEl.setText(message);
 	}
 }

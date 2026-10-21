@@ -56,11 +56,11 @@ export function mergeSettings(source: unknown): BerryRadioSettings {
 	if (typeof source !== "object" || source === null) return { ...DEFAULT_SETTINGS };
 	const raw = source as Record<string, unknown>;
 	const bool = (key: string, fallback: boolean): boolean =>
-		typeof raw[key] === "boolean" ? (raw[key] as boolean) : fallback;
+		typeof raw[key] === "boolean" ? Boolean(raw[key]) : fallback;
 	const str = (key: string, fallback: string): string =>
-		typeof raw[key] === "string" ? (raw[key] as string) : fallback;
+		typeof raw[key] === "string" ? String(raw[key]) : fallback;
 
-	const volume = typeof raw["volume"] === "number" ? (raw["volume"] as number) : DEFAULT_SETTINGS.volume;
+	const volume = typeof raw["volume"] === "number" ? Number(raw["volume"]) : DEFAULT_SETTINGS.volume;
 
 	return {
 		country: str("country", DEFAULT_SETTINGS.country),
@@ -148,8 +148,8 @@ export class BerryRadioSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("允许 http 流")
-			.setDesc("部分电台只提供不加密的 http 流。开启后可能被 Obsidian 的混合内容策略拦截。")
+			.setName("允许 HTTP 流")
+			.setDesc("部分电台只提供不加密的 HTTP 流。开启后可能被 Obsidian 的混合内容策略拦截。")
 			.addToggle((toggle) =>
 				toggle.setValue(this.plugin.settings.allowHttp).onChange(async (value) => {
 					this.plugin.settings.allowHttp = value;

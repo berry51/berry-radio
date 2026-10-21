@@ -134,7 +134,7 @@ export class StatusBar {
 	 *  只藏内部节点会在状态栏里留一条空的点击区。 */
 	private applyVisibility(): void {
 		const visible = this.enabled;
-		this.host.style.display = visible ? "" : "none";
-		this.el.style.display = visible ? "" : "none";
+		this.host.toggleClass("br-is-hidden", !visible);
+		this.el.toggleClass("br-is-hidden", !visible);
 	}
 }

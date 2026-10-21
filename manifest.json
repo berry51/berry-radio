@@ -1,9 +1,9 @@
 {
   "id": "berry-radio",
   "name": "Berry Radio",
-  "version": "0.9.1",
-  "minAppVersion": "1.5.7",
-  "description": "在 Obsidian 里听电台：笔记内嵌播放器、侧栏电台面板、状态栏迷你播放器，三处共享同一个播放实例。",
+  "version": "0.9.2",
+  "minAppVersion": "1.7.2",
+  "description": "Listen to live radio without leaving your notes: a player in your notes, a panel in the sidebar, and a mini player in the status bar.",
   "author": "berry51",
   "authorUrl": "https://github.com/berry51",
   "isDesktopOnly": false

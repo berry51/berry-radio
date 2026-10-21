@@ -35,7 +35,7 @@ export function renderArtwork(
 	const favicon = station.favicon;
 	if (!favicon || !/^https:\/\//i.test(favicon)) return;
 
-	const image = document.createElement("img");
+	const image = container.createEl("img");
 	image.alt = "";
 	image.loading = "lazy";
 	image.decoding = "async";

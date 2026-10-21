@@ -21,8 +21,8 @@ export class StationPicker extends SuggestModal<Station> {
 		this.limit = 24;
 	}
 
-	override onOpen(): void {
-		super.onOpen();
+	override async onOpen(): Promise<void> {
+		await super.onOpen();
 		this.setPlaceholder("搜索电台，例如：中国之声");
 	}
 

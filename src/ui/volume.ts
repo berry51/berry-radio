@@ -15,27 +15,27 @@ export interface VolumeControl {
  * `top: 50% / translateY(-50%)` 钉在轨道中线上，与行居中对齐是几何保证。
  */
 export function renderVolume(plugin: BerryRadioPlugin, extraClass = ""): VolumeControl {
-	const root = document.createElement("div");
+	const root = createDiv();
 	root.className = extraClass ? `br-volume ${extraClass}` : "br-volume";
 
-	const icon = document.createElement("span");
+	const icon = root.createSpan();
 	icon.className = "br-volume__icon";
 	setIcon(icon, "volume-2");
 
-	const control = document.createElement("div");
+	const control = root.createDiv();
 	control.className = "br-volume__control";
 
-	const track = document.createElement("div");
+	const track = control.createDiv();
 	track.className = "br-volume__track";
-	const fill = document.createElement("div");
+	const fill = control.createDiv();
 	fill.className = "br-volume__fill";
-	const thumb = document.createElement("div");
+	const thumb = control.createDiv();
 	thumb.className = "br-volume__thumb";
 	control.appendChild(track);
 	control.appendChild(fill);
 	control.appendChild(thumb);
 
-	const range = document.createElement("input");
+	const range = control.createEl("input");
 	range.type = "range";
 	range.min = "0";
 	range.max = "100";
@@ -45,21 +45,21 @@ export function renderVolume(plugin: BerryRadioPlugin, extraClass = ""): VolumeC
 	// 用原生 label 命名，不用无障碍标签属性：Obsidian 会把它变成悬浮提示
 	const rangeId = `br-volume-${Math.random().toString(36).slice(2, 9)}`;
 	range.id = rangeId;
-	const rangeLabel = document.createElement("label");
+	const rangeLabel = control.createEl("label");
 	rangeLabel.className = "br-sr-only";
 	rangeLabel.htmlFor = rangeId;
 	rangeLabel.textContent = "音量";
 	control.appendChild(rangeLabel);
 	control.appendChild(range);
 
-	const percent = document.createElement("span");
+	const percent = root.createSpan();
 	percent.className = "br-volume__pct";
 	percent.setText(`${range.value}%`);
 
 	const paint = (): void => {
 		percent.setText(`${range.value}%`);
 		// 填充宽度与滑块位置都取自这一个变量，两者永远对得上
-		root.style.setProperty("--br-vol", `${range.value}%`);
+		root.setCssProps({ "--br-vol": `${range.value}%` });
 	};
 	paint();
 

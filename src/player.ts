@@ -155,7 +155,10 @@ export class RadioPlayer {
 				}
 				this.audio.play().then(
 					() => settle(resolve),
-					(error: unknown) => settle(() => reject(error)),
+					(error: unknown) =>
+						settle(() =>
+							reject(error instanceof Error ? error : new Error(String(error))),
+						),
 				);
 			});
 

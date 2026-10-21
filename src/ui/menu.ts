@@ -42,7 +42,8 @@ function onDocumentKeyDown(event: KeyboardEvent): void {
 export function showMenu(anchor: HTMLElement, sections: MenuSection[]): void {
 	closeOpenMenu();
 
-	const menu = document.createElement("div");
+	// 游离浮层：先在 fragment 里建好，定位完成后再挂到 body
+	const menu = createDiv();
 	menu.className = "br-menu";
 	menu.setAttribute("role", "menu");
 
@@ -80,8 +81,7 @@ export function showMenu(anchor: HTMLElement, sections: MenuSection[]): void {
 	const left = Math.max(8, Math.min(rect.right - menuRect.width, window.innerWidth - menuRect.width - 8));
 	let top = rect.top - menuRect.height - 6;
 	if (top < 8) top = rect.bottom + 6;
-	menu.style.left = `${Math.round(left)}px`;
-	menu.style.top = `${Math.round(top)}px`;
+	menu.setCssProps({ left: `${Math.round(left)}px`, top: `${Math.round(top)}px` });
 
 	openMenu = menu;
 	document.addEventListener("mousedown", onDocumentMouseDown, true);

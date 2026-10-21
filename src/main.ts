@@ -144,7 +144,7 @@ export default class BerryRadioPlugin extends Plugin {
 
 	/** 按设置显示或隐藏入口。 */
 	applySurfaces(): void {
-		if (this.ribbonEl) this.ribbonEl.style.display = this.settings.enableSidebar ? "" : "none";
+		this.ribbonEl?.toggleClass("br-is-hidden", !this.settings.enableSidebar);
 		this.statusBar?.setEnabled(this.settings.enableStatusBar);
 	}
 

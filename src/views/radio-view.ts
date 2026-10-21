@@ -74,7 +74,7 @@ export class RadioView extends ItemView {
 				inset = Math.round(rect.height);
 			}
 		}
-		this.contentEl.style.setProperty("--br-status-inset", `${inset}px`);
+		this.contentEl.setCssProps({ "--br-status-inset": `${inset}px` });
 	}
 
 	async onClose(): Promise<void> {
@@ -287,11 +287,10 @@ export class RadioView extends ItemView {
 			const existing = row.querySelector(".br-eq");
 			if (isCurrent && state.status === "playing") {
 				if (!existing) {
-					const eq = document.createElement("div");
-					eq.className = "br-eq";
-					eq.appendChild(document.createElement("span"));
-					eq.appendChild(document.createElement("span"));
-					eq.appendChild(document.createElement("span"));
+					const eq = createDiv({ cls: "br-eq" });
+					eq.createSpan();
+					eq.createSpan();
+					eq.createSpan();
 					const star = row.querySelector(".br-star");
 					if (star) row.insertBefore(eq, star);
 					else row.appendChild(eq);
